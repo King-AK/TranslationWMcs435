@@ -1,34 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-us">
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
-
+    <meta charset="UTF-8">
     <title>TranslationEngine by King-AK</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
-
   <body>
+    <section class="page-header">
+      <h1 class="project-name">TranslationEngine</h1>
+      <h2 class="project-tagline">Magically converts JSON files to test cases</h2>
+      <a href="https://github.com/King-AK/TranslationWMcs435" class="btn">View on GitHub</a>
+      <a href="https://github.com/King-AK/TranslationWMcs435/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/King-AK/TranslationWMcs435/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-    <header>
-      <div class="container">
-        <h1>TranslationEngine</h1>
-        <h2>Magically converts JSON files to test cases</h2>
-
-        <section id="downloads">
-          <a href="https://github.com/King-AK/TranslationWMcs435/zipball/master" class="btn">Download as .zip</a>
-          <a href="https://github.com/King-AK/TranslationWMcs435/tarball/master" class="btn">Download as .tar.gz</a>
-          <a href="https://github.com/King-AK/TranslationWMcs435" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
-        </section>
-      </div>
-    </header>
-
-    <div class="container">
-      <section id="main_content">
-        <p><strong><p> College of William and Mary -- CSCI 435 -- TranslationTeam </p></strong></p>
+    <section class="main-content">
+      <p><strong><p> College of William and Mary -- CSCI 435 -- TranslationTeam </p></strong></p>
 
 <p> <b>TranslationTeam members:</b> Nathan Chen, Avon Davey, Mark Hutchens, Tho Tran</p>
 
@@ -79,7 +70,7 @@ To use our program you have one of two choices to choose from when it comes to p
 
 ``Framework, Mode ("file"/"live"), Input, Output.
 (e.g. "UIAutomator file ./IO/mileage_swipe.txt ./IO/standard_out.txt" without the quotes)
-Click this link to see one of our preference files as an example.
+Click this [link](https://github.com/TranslationWMcs435/TranslationWMcs435/blob/master/Code/IO/preferences.txt) to see one of our preference files as an example.
 </li>
 </ul>
 
@@ -89,14 +80,9 @@ Click this link to see one of our preference files as an example.
 <i>The only live mode actually integrated at the moment is for Appium.</i> By selecting to convert to a Live mode, you are choosing to execute your JSON test case on the fly with the specified framework instead of receiving output as a file containing Java code. TranslationEngine does this by running through the parsed results of your JSON file line by line and dynamically executing commands that match the selected framework on your emulator or physical device.  </p>
 
 <h2>
-<a id="workflow-overview" class="anchor" href="#workflow-overview" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Workflow Overview</h2>
-
-<p>embed pictures of usecases here, maybe diagram of how the thing works</p>
-
-<h2>
 <a id="supported-frameworks" class="anchor" href="#supported-frameworks" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Supported frameworks</h2>
 
-<p>TranslationEngine currently supports the following testing frameworks: Appium, Espresso, Robotium, and UIAutomator. To make use of these frameworks, you will need to make sure they are installed on your system and ready for use as they would be if you were not using TranslationEngine. For help click here.</p>
+<p>TranslationEngine currently supports the following testing frameworks: Appium, Espresso, Robotium, and UIAutomator. To make use of these frameworks, you will need to make sure they are installed on your system and ready for use as they would be if you were not using TranslationEngine. For help with that, click <a href="https://github.com/TranslationWMcs435/TranslationWMcs435/tree/master/Artifacts/Setup%20instructions">here</a>.</p>
 
 <hr>
 
@@ -133,7 +119,7 @@ Click this link to see one of our preference files as an example.
 </ul>
 
 <h2>
-<a id="structure" class="anchor" href="#structure" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Structure</h2>
+<a id="structure-overview" class="anchor" href="#structure-overview" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Structure Overview</h2>
 
 <p>The project is structured into three different parts: JSON Parser, Translation Engine, and Execution Engine</p>
 
@@ -152,20 +138,37 @@ Click this link to see one of our preference files as an example.
 <h2>
 <a id="extension" class="anchor" href="#extension" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Extension</h2>
 
-<p>To extend the project to work with another framework, you mostly need to implement a translation engine, which you can base off of preexisting abstract classes in the .trans package. Then you must link that engine up to the Main class with with a couple lines of code.</p>
+<p>To extend the project to work with another framework, you mostly need to implement a translation engine for that framework. 
+We have made this very easy for anyone to do so long as they base their additions on what already exists. This can be done by making use of preexisting abstract classes in the .trans package, and completing the methods as fit for your new framework. 
+Additionally, you must link the new engine up to the Main class by adding a couple lines of code to Main.java.</p>
 
-<p>The major function in your engine will be Translator.steps_iterator(TestCase). This function should iterate through the TestCase that has been created from the user's JSON file. Your Translator should pass the actions to a Functions class, which decides between all the actions a user inputs, and places code corresponding to those actions in the toWrite attribute of your Translator.</p>
+<p>The major function in your engine will be Translator.steps_iterator(TestCase). This function should iterate through the TestCase that has been created from the user's JSON file. Your Translator should pass the actions to a Functions class, which decides between all the actions a user inputs, and places code corresponding to those actions in the toWrite attribute of your Translator.
+Then you tell the Translator to print out toWrite in Main (that code's already there).</p>
 
-<p>Then you tell the Translator to print out toWrite in Main (that code's already there).</p>
+<p>For the framework you wish to implement, you will want to create a new folder for your framework in the src directory and add 3  classes to it:
+1.<b>[your_framework]FileModifier.java</b> which extends the FileModifier class, 
+2.<b>[your_framework]Functions.java</b> which extends the GenericFunctions class, 
+3.<b>[your_framework]Translator.java</b> which extends the GenericTranslator abstract class</p>
 
-<p>In Main, you need to add lines in three places. First, import your package up top. Second, add your new classname to the switch statement that currently (4/7/2016) has "Espresso" and "Appium" and such. Put yours at the end, and follow the pattern. The third place is if you have a live mode, in which case you will need to add code to the next switch statement, or handle it more cleverly above. Live mode is more difficult to support overall, since each framework differs more wildly.</p>
+<p>These three classes must exist as a minimum to keep in line with how the engines have been established for the existing frameworks.</p>
 
-<p>For the framework you wish to implement, you will want to create a new folder for your framework in the src directory and add classes to it titled [your_framework]FileModifier.java which extends the FileModifier class, [your_framework]Functions.java which extends the GenericFunctions class, and [your_framework]Translator.java which extends the GenericTranslator abstract class, keeping in line with how the files have been established for the existing frameworks.</p>
+<p>Inside each of your framework's translation engine classes you will need to implement ALL the functions inside the FileModifier and Translator classes and AS MANY functions as you possibly can in the Functions class to make the translator as fully functional as you need it to be. You will need to clearly specify all the neccessary imports and other setup jargon in the FileModifier, and know what the appropriate java statements are for your framework to execute specific actions such as clicks, long clicks, typing, and swipes. The StepTestCase iterator will be able to allow you to run through a parsed JSON file to know exactly where to click, or what to type, but in the end, it is up to the implementor to understand how exactly to make these actions occur within the context of their framework. So be sure to at least become semi-familiar with the documentation on any framework you wish to add.</p>
 
-<p>Inside each of your framework's translation engine classes you will need to implement ALL the functions inside the FileModifier and Translator classes and AS MANY functions as you possibly can in the Functions class to make the translator as fully functional as you need it to be. You will need to clearly specify all the neccessary imports and other setup jargon in the FileModifier, and know what the appropriate java statements are for your framework to execute specific actions such as clicks, long clicks, typing, and swipes. The StepTestCase iterator will be able to allow you to run through a parsed JSON file to know exactly where to click, or what to type, but in the end, it is up to the implementor to understand how exactly to make these actions occur within the context of their framework. </p>
-      </section>
-    </div>
+<p>In Main.java, you need to add lines in three places: 
+1. Import your package up top. 
+2. Add your new framework name to the switch statement that currently has the names of other frameworks such as "Espresso" and "Appium" and such. Put yours at the end, and follow the pattern, including a number and being case-sensitive. 
+3. If you have a live mode, add code to the next switch statement (or handle it more cleverly above). Live mode is more difficult to support overall, since each framework differs more wildly.</p>
 
-    
+<p>The beauty in this is lies in the fact that as more people use TranslationEngine and add more frameworks, anyone who uses TranslationEngine can create fully functional tests in any supported framework without any deep knowledge of the framework they are creating a test for. They minimally must only be familiar with JSON.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/King-AK/TranslationWMcs435">TranslationEngine</a> is maintained by <a href="https://github.com/King-AK">King-AK</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
   </body>
 </html>
