@@ -29,15 +29,15 @@
 <hr>
 
 <p>
-The TranslationEngine project was carried out by the TranslationTeam during the Spring 2016 semester at the College of William and Mary as part of the coursework for instructor Denys Poshyvanyk's CSCI 435 course under the supervision of teaching assistant Carlos Bernal-Cardenas. This project aims to automatically generate test cases for various Android graphical user interface (GUI) testing frameworks. It parses GUI events defined in a JSON file and converts them into test cases which can be executed by the frameworks.
+The TranslationEngine project was carried out by the TranslationTeam during the Spring 2016 semester at the College of William and Mary as part of the coursework for instructor Denys Poshyvanyk's CSCI 435 course under the supervision of teaching assistant Carlos Bernal-Cardenas. This project aims to automatically generate test cases for various Android graphical user interface (GUI) testing frameworks.
 </p>
 
 <p>
-Testing software is an important task of software engineering because it assures the quality of the systems that users will use. Moreover, there are different metrics that help to identify whether a software is ready to go to production after executing different tests. In particular for Android applications there are several testing frameworks (e.g. Robotium, Robolectric) that help generate test cases in order to improve the quality of Android applications.
+Testing software is an important task of software engineering because it assures the quality of the systems that users will use. Moreover, there are different metrics that help to identify whether a software is ready to go to production after executing different tests. In particular for Android applications there are several testing frameworks (e.g. Robotium, Robolectric) that help generate test cases in order to improve the quality of Android applications. However different these frameworks may seem, they are all being used (at least by us) to run automated tests on the same type of graphical interface. Knowing this, we are able to make use of test cases which are more generally described as GUI events in JSON files rather than explicit code for specific frameworks.
 </p>
 
 <p>
-Therefore, the goal of this project is to generate a translation engine that will take in a JSON file with GUI events and parse those events into different testing frameworks.
+Therefore, the goal of this project is to generate a translation engine that will take as input a JSON file containing GUI events, and then parse those events into Java code which is executable for several different testing frameworks.
 </p>
 
 <h1>
