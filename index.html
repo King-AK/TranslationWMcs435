@@ -1,25 +1,34 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html>
   <head>
-    <meta charset="UTF-8">
-    <title>TranslationEngine by King-AK</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-  </head>
-  <body>
-    <section class="page-header">
-      <h1 class="project-name">TranslationEngine</h1>
-      <h2 class="project-tagline">Magically converts JSON files to test cases</h2>
-      <a href="https://github.com/King-AK/TranslationWMcs435" class="btn">View on GitHub</a>
-      <a href="https://github.com/King-AK/TranslationWMcs435/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/King-AK/TranslationWMcs435/tarball/master" class="btn">Download .tar.gz</a>
-    </section>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
 
-    <section class="main-content">
-      <p><strong><p> College of William and Mary -- CSCI 435 -- TranslationTeam </p></strong></p>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <title>TranslationEngine by King-AK</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>TranslationEngine</h1>
+        <h2>Magically converts JSON files to test cases</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/King-AK/TranslationWMcs435/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/King-AK/TranslationWMcs435/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/King-AK/TranslationWMcs435" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <p><strong><p> College of William and Mary -- CSCI 435 -- TranslationTeam </p></strong></p>
 
 <p> <b>TranslationTeam members:</b> Nathan Chen, Avon Davey, Mark Hutchens, Tho Tran</p>
 
@@ -58,18 +67,26 @@ To use our program you have one of two choices to choose from when it comes to p
 
 <ul>
 <li>
-<b>Following the prompt and entering input when asked.</b> blablabla</li>
+<b>Following the prompt and entering input when asked.</b> The prompt is very self-explanatory, but we explain things here for completeness. 
+<ol>
+<li>Select a framework to translate to by either entering a number or entering the name of the framework (being sure to be case-sensitive in your input). Selecting a Live Mode will send you down a different chain of input. Scroll further down for more information.</li>
+<li>Next, enter the relative path of the JSON file you are parsing from if you are storing your JSON files in the ~/IO folder, do this as "./IO/[your JSON file name]". <i>Alternatively</i>, enter the absolute path to the JSON file of choice if it is not local to the project directory</li>
+<li>Lastly, enter a name for the output file.</li>
+</ol>
+</li>
+<li>
+<b>Passing a parameter file.</b> To do this, you pass a single parameter, which is the name of a local .txt file holding all of your preferences for the translation. The information in the parameter file is written in the following fashion (it is actually the same ordering as the prompter): 
 
-<li>Passing a parameter file.</li>
+``Framework, Mode ("file"/"live"), Input, Output.
+(e.g. "UIAutomator file ./IO/mileage_swipe.txt ./IO/standard_out.txt" without the quotes)
+Click this link to see one of our preference files as an example.
+</li>
 </ul>
 
-<p>Start the program and follow the Run the program with command line prompts, with a preference file passed as the first parameter, or type in parameters with a prompt.  The prompt is self-explanatory. You can type the numbers, or you can type the name of the framework (Case-sensitive at the moment. Easy to change). Input and output files require "./IO/" at the front if you have them saved in the IO folder! (I could also make that flexible, but then absolute path would be harder to use.)</p>
+<p>For all file creations, you will need to copy-paste the outputted code into your preexisting test framework.</p>
 
-<p>The command-line uses the same ordering as the prompter: Framework, Mode ("file"/"live"), Input, Output. e.g. "UIAutomator file ./IO/mileage_swipe.txt ./IO/standard_out.txt" without the quotes.</p>
-
-<p>If you want to use a preference file, pass in a single parameter, your preference file's name. Your file must end with ".txt" which is how we're telling the difference between this and directly plugging in your commands.</p>
-
-<p>The only live mode actually integrated at the moment is Appium. For all file modes, you will need to copy-paste the outputted code into your preexisting test framework. A list of required items on a per-framework basis could be added to meet demand.</p>
+<p><b>Live Mode</b>
+<i>The only live mode actually integrated at the moment is for Appium.</i> By selecting to convert to a Live mode, you are choosing to execute your JSON test case on the fly with the specified framework instead of receiving output as a file containing Java code. TranslationEngine does this by running through the parsed results of your JSON file line by line and dynamically executing commands that match the selected framework on your emulator or physical device.  </p>
 
 <h2>
 <a id="workflow-overview" class="anchor" href="#workflow-overview" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Workflow Overview</h2>
@@ -79,19 +96,29 @@ To use our program you have one of two choices to choose from when it comes to p
 <h2>
 <a id="supported-frameworks" class="anchor" href="#supported-frameworks" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Supported frameworks</h2>
 
-<p>TranslationEngine currently supports the following testing frameworks: Appium, Espresso, Robolectric (soon), Robotium, UIAutomator</p>
+<p>TranslationEngine currently supports the following testing frameworks: Appium, Espresso, Robotium, and UIAutomator. To make use of these frameworks, you will need to make sure they are installed on your system and ready for use as they would be if you were not using TranslationEngine. For help click here.</p>
 
 <hr>
 
-<p>Appium is a black box testing framework. It sets up a server that controls your Android device/emulator remotely to perform live testing. It doesn't know how long actions will take to halt, so it lets a timer run for a bit before inputting again. <a href="http://appium.io">http://appium.io</a></p>
+<h3>
+<a id="appium" class="anchor" href="#appium" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Appium</h3>
 
-<p>Espresso is a white box testing framework. It uses the Android JUnit service to test on your android device/emulator. Because it is connected to the source, it can tell when activities end, so the tests run faster. <a href="https://google.github.io/android-testing-support-library/docs/espresso/index.html">https://google.github.io/android-testing-support-library/docs/espresso/index.html</a></p>
+<p><b>Appium</b> is a <i>black box</i> testing framework. In both live and file mode testing, it will rely upon the creation of a server (handled by the TranslationEngine in Live Mode, and in the output file for file mode) that controls your Android device or emulator remotely. Because this framework does not know how long actions will take to halt (e.g. performing a tap that switches the screen view vs performing a tap that does not change screen view), TranslationEngine will automatically delay the commands it sends to the Android device/emulator. This may make the code appear to run slower than the other frameworks. Learn more about Appium at: <a href="http://appium.io">http://appium.io</a></p>
 
-<p>Robolectric is a white box testing framework. It runs the activity lifecycle itself, so it doesn't need a device or emulator. It is also very finicky with imported code, so we haven't gotten it to work yet. <a href="http://robolectric.org">http://robolectric.org</a></p>
+<h3>
+<a id="espresso" class="anchor" href="#espresso" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Espresso</h3>
 
-<p>Robotium is a white-or-black box testing framework that can record and play back test cases on a device or emulator. It has a whole bunch of customization options for your test cases. <a href="http://robotium.com/pages/user-guide-android-studio">http://robotium.com/pages/user-guide-android-studio</a></p>
+<p><b>Espresso</b> is a white box testing framework. It uses the Android JUnit service to test on your android device/emulator. Because it is connected to the source, it can tell when activities end, so the tests run faster. Learn more about Espresso at: <a href="https://google.github.io/android-testing-support-library/docs/espresso/index.html">https://google.github.io/android-testing-support-library/docs/espresso/index.html</a></p>
 
-<p>UIAutomator is a white-or-black box testing framework that is able to automate across the entire android system, and is good for managing apps in the context of actual usage. It uses the AndroidJUnitRunner test runner. <a href="https://developer.android.com/training/testing/ui-testing/uiautomator-testing.html">https://developer.android.com/training/testing/ui-testing/uiautomator-testing.html</a></p>
+<h3>
+<a id="robotium" class="anchor" href="#robotium" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Robotium</h3>
+
+<p><b>Robotium</b> is a white-or-black box testing framework that can record and play back test cases on a device or emulator. It has a whole bunch of customization options for your test cases. Learn more about Robotium at: <a href="http://robotium.com/pages/user-guide-android-studio">http://robotium.com/pages/user-guide-android-studio</a></p>
+
+<h3>
+<a id="uiautomator" class="anchor" href="#uiautomator" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>UIAutomator</h3>
+
+<p><b>UIAutomator</b> is a white-or-black box testing framework that is able to automate across the entire android system, and is good for managing apps in the context of actual usage. It uses the AndroidJUnitRunner test runner. Learn more about UIAutomator at: <a href="https://developer.android.com/training/testing/ui-testing/uiautomator-testing.html">https://developer.android.com/training/testing/ui-testing/uiautomator-testing.html</a></p>
 
 <h2>
 <a id="dependencies" class="anchor" href="#dependencies" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dependencies</h2>
@@ -136,15 +163,9 @@ To use our program you have one of two choices to choose from when it comes to p
 <p>For the framework you wish to implement, you will want to create a new folder for your framework in the src directory and add classes to it titled [your_framework]FileModifier.java which extends the FileModifier class, [your_framework]Functions.java which extends the GenericFunctions class, and [your_framework]Translator.java which extends the GenericTranslator abstract class, keeping in line with how the files have been established for the existing frameworks.</p>
 
 <p>Inside each of your framework's translation engine classes you will need to implement ALL the functions inside the FileModifier and Translator classes and AS MANY functions as you possibly can in the Functions class to make the translator as fully functional as you need it to be. You will need to clearly specify all the neccessary imports and other setup jargon in the FileModifier, and know what the appropriate java statements are for your framework to execute specific actions such as clicks, long clicks, typing, and swipes. The StepTestCase iterator will be able to allow you to run through a parsed JSON file to know exactly where to click, or what to type, but in the end, it is up to the implementor to understand how exactly to make these actions occur within the context of their framework. </p>
+      </section>
+    </div>
 
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/King-AK/TranslationWMcs435">TranslationEngine</a> is maintained by <a href="https://github.com/King-AK">King-AK</a>.</span>
-
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
-      </footer>
-
-    </section>
-
-  
+    
   </body>
 </html>
